@@ -3,29 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UBIQATE - Conversor de Coordenadas, Direcciones y Mapa V1.0</title>
+    <title>UBIQATE - Conversor de Coordenadas, Direcciones y Mapa V1.1</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.8.0/proj4.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-
 </head>
 <body>
     <div class="container">
         <header>
             <h1><i class="fas fa-map-marker-alt"></i> UBIQATE</h1>
-            <h3>Conversor de Coordenadas y Planificador de Rutas - Versión 1.1</h3>
+            <h3>Conversor de Coordenadas, Direcciones y Mapa - Versión 1.1</h3>
         </header>
 
         <div class="tabs">
-            <div class="tab active" data-tab="location">Ubicación y Conversión</div>
-            <div class="tab" data-tab="routes">Planificación de Rutas</div>
+            <button class="tab-button active" data-tab="location-tab">Ubicación y Coordenadas</button>
+            <button class="tab-button" data-tab="route-tab">Trazar Ruta</button>
         </div>
 
+        <!-- Pestaña de Ubicación y Coordenadas -->
         <div id="location-tab" class="tab-content active">
             <div class="card">
                 <div class="card-title">
-                    <i class="fas fa-location-arrow"></i>
+                    <i class="fas fa-map-pin"></i>
                     <h2>Ubicación Actual</h2>
                 </div>
                 <div class="btn-group">
@@ -53,26 +53,26 @@
                 <div id="dd-input" class="coordinate-input">
                     <div class="input-group">
                         <label for="dd-lat">Latitud:</label>
-                        <input type="number" id="dd-lat" placeholder="Ej: -34.603722" step="any">
+                        <input type="number" id="dd-lat" placeholder="Ej: -34.603722">
                     </div>
                     <div class="input-group">
                         <label for="dd-lon">Longitud:</label>
-                        <input type="number" id="dd-lon" placeholder="Ej: -58.381592" step="any">
+                        <input type="number" id="dd-lon" placeholder="Ej: -58.381592">
                     </div>
                 </div>
 
                 <div id="dms-input" class="coordinate-input three-col" style="display:none;">
                     <div class="input-group">
                         <label for="dms-lat-d">Grados Lat:</label>
-                        <input type="number" id="dms-lat-d" placeholder="Grados" min="0" max="90">
+                        <input type="number" id="dms-lat-d" placeholder="Grados">
                     </div>
                     <div class="input-group">
                         <label for="dms-lat-m">Minutos Lat:</label>
-                        <input type="number" id="dms-lat-m" placeholder="Minutos" min="0" max="59">
+                        <input type="number" id="dms-lat-m" placeholder="Minutos">
                     </div>
                     <div class="input-group">
                         <label for="dms-lat-s">Segundos Lat:</label>
-                        <input type="number" id="dms-lat-s" placeholder="Segundos" min="0" max="59.999" step="0.001">
+                        <input type="number" id="dms-lat-s" placeholder="Segundos">
                     </div>
                     <div class="input-group">
                         <label for="dms-lat-dir">Dirección:</label>
@@ -83,15 +83,15 @@
                     </div>
                     <div class="input-group">
                         <label for="dms-lon-d">Grados Lon:</label>
-                        <input type="number" id="dms-lon-d" placeholder="Grados" min="0" max="180">
+                        <input type="number" id="dms-lon-d" placeholder="Grados">
                     </div>
                     <div class="input-group">
                         <label for="dms-lon-m">Minutos Lon:</label>
-                        <input type="number" id="dms-lon-m" placeholder="Minutos" min="0" max="59">
+                        <input type="number" id="dms-lon-m" placeholder="Minutos">
                     </div>
                     <div class="input-group">
                         <label for="dms-lon-s">Segundos Lon:</label>
-                        <input type="number" id="dms-lon-s" placeholder="Segundos" min="0" max="59.999" step="0.001">
+                        <input type="number" id="dms-lon-s" placeholder="Segundos">
                     </div>
                     <div class="input-group">
                         <label for="dms-lon-dir">Dirección:</label>
@@ -105,7 +105,7 @@
                 <div id="utm-input" class="coordinate-input" style="display:none;">
                     <div class="input-group">
                         <label for="utm-zone">Zona UTM:</label>
-                        <input type="number" id="utm-zone" placeholder="Ej: 21" min="1" max="60">
+                        <input type="number" id="utm-zone" placeholder="Ej: 21">
                     </div>
                     <div class="input-group">
                         <label for="utm-hemisphere">Hemisferio:</label>
@@ -116,11 +116,11 @@
                     </div>
                     <div class="input-group">
                         <label for="utm-easting">Este (Easting):</label>
-                        <input type="number" id="utm-easting" placeholder="Coordenada Este" step="any">
+                        <input type="number" id="utm-easting" placeholder="Coordenada Este">
                     </div>
                     <div class="input-group">
                         <label for="utm-northing">Norte (Northing):</label>
-                        <input type="number" id="utm-northing" placeholder="Coordenada Norte" step="any">
+                        <input type="number" id="utm-northing" placeholder="Coordenada Norte">
                     </div>
                 </div>
 
@@ -133,7 +133,7 @@
 
                 <div class="btn-group">
                     <button id="convert-btn" class="btn-primary">
-                        <i class="fas fa-sync-alt"></i> Convertir y Mostrar en Mapa
+                        <i class="fas fa-sync-alt"></i> Convertir y Mostrar
                     </button>
                 </div>
             </div>
@@ -141,7 +141,7 @@
             <div class="card">
                 <div class="card-title">
                     <i class="fas fa-info-circle"></i>
-                    <h2>Resultados de Conversión</h2>
+                    <h2>Resultados</h2>
                 </div>
                 <div class="output-section">
                     <div class="output-item">
@@ -164,35 +164,14 @@
             </div>
         </div>
 
-        <div id="routes-tab" class="tab-content">
+        <!-- Pestaña de Trazar Ruta -->
+        <div id="route-tab" class="tab-content">
             <div class="card">
                 <div class="card-title">
                     <i class="fas fa-route"></i>
-                    <h2>Planificador de Rutas</h2>
+                    <h2>Configuración de Ruta</h2>
                 </div>
-                <div class="input-group">
-                    <label for="start-location">Ubicación de inicio:</label>
-                    <input type="text" id="start-location" placeholder="Ingrese dirección inicial o use la ubicación actual">
-                    <div class="btn-group">
-                        <button id="use-current-location" class="btn-success">
-                            <i class="fas fa-location-arrow"></i> Usar Ubicación Actual
-                        </button>
-                        <button id="find-start-location" class="btn-primary">
-                            <i class="fas fa-search"></i> Buscar
-                        </button>
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <label>Destinos (puede agregar múltiples):</label>
-                    <div class="waypoints-list" id="waypoints-list">
-                        <!-- Los waypoints se agregarán aquí dinámicamente -->
-                    </div>
-                    <button id="add-waypoint" class="btn-secondary">
-                        <i class="fas fa-plus"></i> Agregar Destino
-                    </button>
-                </div>
-
+                
                 <div class="transport-selector">
                     <div class="transport-option active" data-mode="driving">
                         <i class="fas fa-car"></i>
@@ -207,29 +186,85 @@
                         <div>Bicicleta</div>
                     </div>
                 </div>
-
+                
+                <!-- Punto de inicio -->
+                <div class="input-group" style="margin-top: 20px;">
+                    <label for="start-address">Punto de inicio:</label>
+                    <div class="input-with-buttons">
+                        <input type="text" id="start-address" placeholder="Ingrese dirección de inicio">
+                        <div class="destination-buttons">
+                            <button id="search-start-btn" class="btn-warning">
+                                <i class="fas fa-search"></i> Buscar
+                            </button>
+                            <button id="current-location-start-btn" class="btn-success">
+                                <i class="fas fa-location-arrow"></i> Actual
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Destinos múltiples -->
+                <div class="destinations-container">
+                    <div class="input-group">
+                        <label>Destinos:</label>
+                        <div class="destination-item">
+                            <input type="text" class="destination-input" placeholder="Ingrese dirección de destino">
+                            <div class="destination-buttons">
+                                <button class="search-destination-btn btn-warning">
+                                    <i class="fas fa-search"></i> Buscar
+                                </button>
+                                <button class="remove-destination-btn btn-accent">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button id="add-destination-btn" class="btn-primary">
+                        <i class="fas fa-plus"></i> Agregar Destino
+                    </button>
+                </div>
+                
                 <div class="btn-group">
-                    <button id="calculate-route" class="btn-primary">
+                    <button id="calculate-route-btn" class="btn-accent">
                         <i class="fas fa-route"></i> Calcular Ruta
                     </button>
-                    <button id="clear-route" class="btn-accent">
+                    <button id="clear-route-btn" class="btn-secondary">
                         <i class="fas fa-trash"></i> Limpiar Ruta
                     </button>
                 </div>
             </div>
 
-            <div class="card">
+            <div id="route-info-container" class="card" style="display: none;">
+                <div class="card-title">
+                    <i class="fas fa-info-circle"></i>
+                    <h2>Información de Ruta</h2>
+                </div>
+                <div class="route-info">
+                    <div class="route-details">
+                        <div class="route-detail">
+                            <div class="value" id="total-distance">-</div>
+                            <div class="label">Distancia Total</div>
+                        </div>
+                        <div class="route-detail">
+                            <div class="value" id="total-duration">-</div>
+                            <div class="label">Duración Total</div>
+                        </div>
+                        <div class="route-detail">
+                            <div class="value" id="destinations-count">0</div>
+                            <div class="label">Destinos</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="route-instructions-container" class="card" style="display: none;">
                 <div class="card-title">
                     <i class="fas fa-directions"></i>
                     <h2>Instrucciones de Ruta</h2>
                 </div>
-                <div id="route-summary" class="output-item" style="display: none;">
-                    <h4>Resumen de Ruta</h4>
-                    <p id="total-distance">-</p>
-                    <p id="total-duration">-</p>
-                </div>
                 <div id="route-instructions" class="route-instructions">
-                    <p style="text-align: center; color: #777;">Calcule una ruta para ver las instrucciones.</p>
+                    <!-- Las instrucciones de ruta se mostrarán aquí -->
                 </div>
             </div>
         </div>
