@@ -85,14 +85,14 @@ UBIQATE es una herramienta web avanzada para conversión de coordenadas geográf
 
 ### 🌐 Modo Web (Recomendado)
 - **Accede a la versión online en:**  
-  https://gonzalo-cr.github.io/UBIQATE/
+  https://gonzalo-cr.github.io/UBIQATE_v1/
 - **No requiere instalación** - funciona directamente en tu navegador
 - **Siempre actualizada** con la última versión
 
 ### 💻 Modo Local
 1. **Cloná o descargá** este repositorio
    ```bash
-   git clone https://github.com/Gonzalo-CR/UBIQATE.git
+   git clone https://github.com/Gonzalo-CR/UBIQATE_V1.git
 
 ---
 
